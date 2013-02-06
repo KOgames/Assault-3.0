@@ -1,5 +1,25 @@
-This is the the Assault 3.0 as it was run by Demortes. This is open to the public, following the standard licenses of Ack and Assault as run by Amnon.
+ASSAULT 3.0 REDUX
 
-If you have any questions, please don't hesitate to ask me, although I, admittadly, will not always be the best resource.
+This is the the Assault 3.0 as it was run by Demortes. 
+This is open to the public, following the standard 
+licenses of Ack and Assault as run by Amnon.
 
-More details to follow from here.
+If you have any questions, please don't hesitate to ask 
+me, although I, admittadly, will not always be the best resource.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+These files were slightly modified by h3rb @ github.com to fix
+compilation issues with modern GCC.  The splintered .h maze was
+built back into ack.h and it now compiles on Ubuntu without many
+errors.  Most of the warnings are about shadow declarations (a
+benign issue), though some may indicate other issues which should
+be addressed and quieted.
+
+Make sure to modify the STAT_WEB_FILE and related settings in
+web.h and ack.h related _FILE macros as they lead to crashes
+during initial login.
+
+This game now runs on orcs.biz port 4554 !  Enjoy.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
