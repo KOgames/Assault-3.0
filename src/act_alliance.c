@@ -34,7 +34,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ack.h"
-#include "config.h"
 
 void do_alliances( CHAR_DATA *ch, char *argument )
 {

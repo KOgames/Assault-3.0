@@ -35,7 +35,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "ack.h"
-#include "config.h"
 
 extern unsigned char will_mxp_str  [];
 extern unsigned char start_mxp_str [];

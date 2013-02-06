@@ -27,10 +27,8 @@
  ~   credits where due.                                                    ~
  ~                                                                         ~
  ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
-
-#ifndef DEC_EMAIL_H
+#include "ack.h"
 #include "email.h"
-#endif
 
 bool valid_email_addy( char * address )
 {

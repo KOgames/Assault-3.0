@@ -34,7 +34,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ack.h"
-#include "config.h"
 #include "mapper.h"
 
 int leads_to args( ( BUILDING_DATA *bld, int dir, int xy ) );

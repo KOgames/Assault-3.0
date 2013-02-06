@@ -27,17 +27,4 @@
 
 #include "signal.h"
 
-#define DEC_EMAIL_H   1
-#ifndef DEC_TYPEDEFS_H
-#include "typedefs.h"
-#endif
-
-#ifndef DEC_UTILS_H
-#include "utils.h"
-#endif
-
-#ifndef DEC_ACK_H
-#include "ack.h"
-#endif
-
 void send_rep_out( CHAR_DATA * ch, char * outbuf, bool mailme, char * msub );

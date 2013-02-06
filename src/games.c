@@ -34,7 +34,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ack.h"
-#include "config.h"
 
 #define LOG_NORMAL      0
 #define LOG_ALWAYS      1

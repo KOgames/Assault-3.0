@@ -39,7 +39,6 @@
 #include <unistd.h>
 #include <arpa/telnet.h>
 #include "ack.h"
-#include "globals.h"
 
 char    compress_start  [] = { IAC, SB, TELOPT_COMPRESS, WILL, SE, '\0' };
 char    compress2_start  [] = { IAC, SB, TELOPT_COMPRESS2, WILL, SE, '\0' };
@@ -229,6 +228,7 @@ bool compressStart(DESCRIPTOR_DATA *d, unsigned char telopt)
 
 bool compressEnd(DESCRIPTOR_DATA *d,unsigned char type)
 {
+#if defined(USE_COMPRESSION)
     unsigned char dummy[1];
     unsigned char telopt;
 
@@ -266,6 +266,7 @@ bool compressEnd(DESCRIPTOR_DATA *d,unsigned char type)
         if ( telopt == 86 && IS_SET(d->character->config,CONFIG_COMPRESS2))
                 REMOVE_BIT(d->character->config,CONFIG_COMPRESS2);
         }*/
+#endif
     return TRUE;
 }
 

@@ -38,9 +38,6 @@ include <types.h>
 #include <string.h>
 #include <time.h>
 #include "ack.h"
-#ifndef DEC_LISTS_H
-#include "lists.h"
-#endif
 
 #define BOARD_DIR "boards"
 #define T2000 -1                                            /* Terminator for files... */

@@ -59,6 +59,7 @@
 #include <sys/wait.h>
 #include <unistd.h>                                         /* for execl */
 #include <ctype.h>
+#include <zlib.h>
 #include "ack.h"
 #include "cursor.h"
 
@@ -2717,7 +2718,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
                 return;
 
             default:
-                write_to_buffer( d, "No, you are NOT allowed to have any other characters.\n\r\n\rNow again, are you allowed to have more than one character, even after using the PDELETE command?\n\r", 0 );
+                write_to_buffer( d, "\n\rIs nuclear war fun (y/n)?", 0 );
                 return;
         }
         return;
@@ -2998,7 +2999,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
             {
                 d->connected = CON_READ_RULES;
                 do_help(ch,"rules");
-                write_to_buffer(d,"\n\rPlease read the rules and answer the following question:\n\rAre you allowed to have any more characters, even if you use the PDELETE command? ", 0 );
+                write_to_buffer(d,"\n\rIs nuclear war fun? (no) ", 0 );
             }
             else
             {

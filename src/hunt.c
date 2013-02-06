@@ -34,7 +34,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ack.h"
-#include "config.h"
 
 extern char * const compass_name[];
 

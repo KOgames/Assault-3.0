@@ -34,7 +34,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ack.h"
-#include "config.h"
 
 void check_skill( CHAR_DATA *ch, int gsn, int chance, char *name );
 

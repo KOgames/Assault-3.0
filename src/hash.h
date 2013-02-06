@@ -1,10 +1,3 @@
-#ifndef DEC_TYPEDEFS_H
-#include "typedefs.h"
-#endif
-#ifndef DEC_LISTS_H
-#include "lists.h"
-#endif
-
 struct hash_entry_tp
 {
     bool        is_free;                                    /* Ramias:for run-time checks of LINK/UNLINK */

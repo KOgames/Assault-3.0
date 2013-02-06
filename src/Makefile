@@ -1,5 +1,4 @@
-CC      = gcc-3.4
-PROF    = 
+CC      = gcc
 NOCRYPT =
 
 # Debugging flags possible:  DEBUG_MEM DEBUG_MEM_CORRUPT DEBUG_MEM_DUP_FREE
@@ -11,18 +10,27 @@ NOCRYPT =
 # DEBUG_MEM_DUP_FREE checks to see if freed blocks are overlapping every call
 # 		     to mem_alloc.
 #
+#DEBUG =  -DDEBUG_MEM -DDEBUG_MEM_CORRUPT -DDEBUG_MEM_DUP_FREE
 
 #IMC2 - Comment out to disable IMC2 support
 #IMC = 1
-#  -DDEBUG_MEM -DDEBUG_MEM_CORRUPT -DDEBUG_MEM_DUP_FREE
-C_FLAGS = -O -g3 -Wall -DACK_43 $(PROF) $(NOCRYPT) 
+#C_FLAGS = -O -g3 -Wall -DACK_43 $(PROF) $(NOCRYPT) 
 #C_FLAGS = -g3 -Wall ($PROF) $(NOCRYPT) -DOLD_RAND -Dunix
 #-DDEBUG_MEM -DDEBUG_MEM_CORRUPT
 # MCCP
-# L_FLAGS = -O -g $(PROF)
- L_FLAGS = -O -g $(PROF) -lz
 # End MCCP
 #L_FLAGS = $(PROF)
+
+PROF    =-O0 -g3#      -pg -DUSE_MCHECK
+LIBS    = -lcrypt -lz #-lgd
+L_FLAGS =$(PROF) -ggdb3 -o0  -D_GNU_SOURCE
+E_FLAGS =#            -Lefence/ -lefence -DMALLOC_DEBUG
+O_FLAGS =$(PROF)
+C_FLAGS =-O0 $(WARNINGS) -DLARGEFILE_SOURCE=1 $(O_FLAGS) -DACK_43 $(NOCRYPT) $(DEBUG)
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+# -L/usr/local/lib 
 
 O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
           db.o fight.o handler.o interp.o engineer.o \
@@ -40,7 +48,7 @@ O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
 
 ack: $(O_FILES)
 	rm -f ack
-	$(CC) $(L_FLAGS) -o ack $(O_FILES) -lm -lcrypt
+	$(CC) $(L_FLAGS) -o ack $(O_FILES) $(LIBS)
 	rm -f /ack
 
 .c.o: ack.h
@@ -54,3 +62,48 @@ clean:
 	rm -f $(O_FILES) ack ../area/core
 #	make
 
+WARNINGS= -Wstrict-prototypes \
+	-Wpointer-arith \
+	-Wno-char-subscripts \
+	-Wmissing-declarations \
+	-Wmissing-prototypes \
+	-Wshadow -Wformat=2 -Waggregate-return \
+	-Winline \
+	-Waddress \
+	-Warray-bounds \
+	-Wchar-subscripts \
+	-Wenum-compare \
+	-Wimplicit-int \
+	-Wimplicit-function-declaration \
+	-Wcomment \
+	-Wmain \
+	-Wmissing-braces \
+	-Wnonnull \
+	-Wparentheses \
+	-Wpointer-sign \
+	-Wreturn-type \
+	-Wsequence-point \
+	-Wsign-compare \
+	-Wstrict-aliasing \
+	-Wstrict-overflow=1 \
+	-Wswitch \
+	-Wtrigraphs \
+	-Wuninitialized \
+	-Wunknown-pragmas \
+	-Wunused-function \
+	-Wunused-label \
+	-Wunused-value \
+	-Wvolatile-register-var
+# Suppressed warnings (not listed: ones included in Wall):
+#-Wunused-variable
+#-Wmissing-prototypes
+#-Wmissing-declarations
+# Notes:
+# reorder enabled by default
+# maybe-uninitialized was not available
+# enum-compare (in C/ObjC; this is on by default in C++) 
+# array-bounds (only with -O2)  
+# implicit-function-declaration (C and Objective-C only) 
+# main (only for C/ObjC and unless -ffreestanding)  
+# missing-braces (only for C/ObjC)
+# sign-compare (only in C++)
